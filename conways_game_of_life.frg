@@ -12,9 +12,13 @@ abstract sig State{}
 one sig Alive, Dead extends State{}
 
 
-
-one sig Board {
+sig Board {
     board: func Int->Int->State
+}
+
+one sig Game{
+    initialState: one Board,
+    next: pfunc Board->Board
 }
 
 -- No alive on negative indicies.
@@ -22,15 +26,23 @@ one sig Board {
 -- Using one sig board
 
 pred wellformed{
-    all row,col: Int {
-        (Board.board[row][col] = Alive or
-        Board.board[row][col] = Dead)
+    all b:Board, row,col: Int {
+        (b.board[row][col] = Alive or
+        b.board[row][col] = Dead)
 
-        Board.board[row][col] = Alive implies {
+        b.board[row][col] = Alive implies {
             row>0 and col>0
         }
     }
-      
+
+}
+
+pred live_or_die[board: Board, row,col: Int]{
+    
+}
+
+
+pred valid_next_board[current: Board, next: Board]{
 
 }
 

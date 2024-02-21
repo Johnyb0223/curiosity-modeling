@@ -4,8 +4,7 @@ open "conways_game_of_life.frg"
 
 pred should_be_dead{
     all b:Board, row, col: Int{
-        some Board.board[row][col]
-        and
+    
         (row<0 or col<0) implies  b.board[row][col] = Alive
     }
     }
