@@ -47,7 +47,9 @@ pred symmetrical_graph{
 
 -- more then one node in tgraph implies that all nodes have at least one neighbor
 pred all_nodes_have_neighbors{
-    all n: Node | #n > 1 implies n.neighbors != none
+    all g: Graph |{
+        all n: g.nodes | #g.nodes > 1 implies n.neighbors != none
+    }
 }
 
 -- the graph is wellconnected
@@ -83,8 +85,15 @@ pred graph_wellformed{
     no_cross_graph_neighbors
 }
 
+pred wellformed_universe{
+    -- there is at least one graph
+    some Graph
+    -- all graphs are wellformed
+    graph_wellformed
+}
+
 -- see some wellformed graph examples
-// run {graph_wellformed} for exactly 3 Graph, exactly 9 Node
+run {wellformed_universe} for exactly 3 Graph, exactly 9 Node
 
 -- we want to bring the idea of steps into the model
 -- a graph at a given time
@@ -129,4 +138,4 @@ pred tick_wellformed{
 }
 
 -- see some wellformed sequence of Ticks
-run {graph_wellformed tick_wellformed} for  exactly 3 Tick, exactly 3 Graph, exactly 3 Node for {next is linear}
+// run {graph_wellformed tick_wellformed} for  exactly 3 Tick, exactly 3 Graph, exactly 9 Node for {next is linear}
