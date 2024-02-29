@@ -56,7 +56,7 @@ We tested the following properties of our model:
 
 `wellformed_graph`:
 
-![wellformed graphs](<Screenshot 2024-02-29 at 2.04.21 PM.png>)
+![![wellformed graphs](<Screenshot 2024-02-29 at 2.04.21 PM.png>)](<Screenshot 2024-02-29 at 2.04.21 PM-1.png>)
 
 `sequential_graph_state`:
 
