@@ -56,10 +56,10 @@ We tested the following properties of our model:
 
 `wellformed_graph`:
 
-![![wellformed graphs](<Screenshot 2024-02-29 at 2.04.21 PM.png>)](<Screenshot 2024-02-29 at 2.04.21 PM-1.png>)
+![![wellformed graphs](<Screenshot 2024-02-29 at 2.04.21 PM.png>)](<./images/Screenshot 2024-02-29 at 2.04.21 PM-1.png>)
 
 `sequential_graph_state`:
 
-![alt text](<Screenshot 2024-02-29 at 2.08.22 PM.png>)
+![alt text](<./images/Screenshot 2024-02-29 at 2.08.22 PM.png>)
 
-![wellformed seqeunces of graphs](<Screenshot 2024-02-29 at 2.06.30 PM.png>)
+![wellformed seqeunces of graphs](<./images/Screenshot 2024-02-29 at 2.06.30 PM.png>)
