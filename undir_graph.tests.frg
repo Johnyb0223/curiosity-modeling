@@ -3,33 +3,34 @@
 open "undir_graph.frg"
 
 
--- The game of life is well-formed if no cell is its own neighbor
-pred no_cell_is_its_own_neighbor{
-  no c: Cell | c in c.neighbors
+-- Test Wellformed Node
+pred no_wellformed_node{
+  -- there exists no node that is a neighbor of itself
+    no n:Node | n in n.neighbors
+  -- there exists no node the is in no graph
+    no n:Node |{
+      all g:Graph | not n in g.nodes
+    }
+
 }
 
--- The game of life is well-formed if every cell has exactly 8 neighbors
-pred every_cell_has_exactly_8_neighbors{
-  all c: Cell | #c.neighbors = 8
+assert wellformed_node is sufficient for no_wellformed_node
+
+-- Test Wellformed Graph
+pred no_wellformed_graph{
+  -- there exists no graph that has zero nodes
+    no g:Graph | g.nodes = none
+    --there exists no graph that has more than 1 node and a node with no neighbors
+    no g:Graph |{
+      some n:g.nodes| n.neighbors = none
+      #g.nodes != 1
+    }
+    -- if a graph has one node, it has no neighbors
+    no g:Graph |{
+       some n:g.nodes| {
+      n.neighbors != none
+      #g.nodes = 1}
+    }
 }
 
--- c1 is a neighbor of c2 if and only if c2 is a neighbor of c1
-pred neighbors_are_symmetric{
-    all c1, c2: Cell | c1 in c2.neighbors <=> c2 in c1.neighbors
-}
-
--- INTERSTING PROPERTY
--- PROOF: each cell having exactly 8 neighbors AND no cell being its own neighbor is sufficient for (c1 in c2.neighbors iff c2 in c1.neighbors) when the 
--- number of cells is 9 (instance space is 9)
-pred weaker_welformed {
-    every_cell_has_exactly_8_neighbors
-    no_cell_is_its_own_neighbor
-}
-assert weaker_welformed is sufficient for neighbors_are_symmetric for 9 Cell
--- END PROOF
-
-
-assert wellformed is sufficient for no_cell_is_its_own_neighbor for 9 Cell
-assert wellformed is sufficient for every_cell_has_exactly_8_neighbors for 9 Cell
-assert wellformed is sufficient for neighbors_are_symmetric for 20 Cell
-
+assert no_wellformed_graph is necessary for wellformed_universe
