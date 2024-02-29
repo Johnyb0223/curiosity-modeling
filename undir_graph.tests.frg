@@ -34,3 +34,20 @@ pred no_wellformed_graph{
 }
 
 assert no_wellformed_graph is necessary for wellformed_universe
+
+-- test wellformed tick sequence
+pred no_wellformed_tick_sequence{
+  -- there exists no tick sequence that has no graph
+    no t: Tick | t.curr = none
+    -- there exists no tick sequence that has a graph with no nodes
+    no t: Tick |{
+      some g:t.curr| g.nodes = none
+    }
+    -- there exists no two sequential ticks such that the graphs contain a different number of nodes
+    no disj t1, t2: Tick | {
+      #t1.curr.nodes != #t2.curr.nodes
+      valid_next_tick[t1, t2]
+    }
+}
+
+assert no_wellformed_tick_sequence is necessary for wellformed_universe
