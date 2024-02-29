@@ -1,6 +1,6 @@
 #lang forge
 
-open "conways_game_of_life.frg"
+open "undir_graph.frg"
 
 
 -- The game of life is well-formed if no cell is its own neighbor
