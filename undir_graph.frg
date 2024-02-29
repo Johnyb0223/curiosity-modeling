@@ -111,19 +111,22 @@ pred valid_next_tick[t1, t2 :Tick]{
     
 }
 
+-- valid transitions beteween Ticks
+pred valid_next_tick{
+    all disj t1,t2: Tick | t1.next = t2 => valid_next_tick[t1, t2]
+}
+
 -- every Tick (moment) will have one graph and no two Ticks share the same graph
 pred tick_wellformed{
+    -- every Tick (moment) will have one graph
+    all t: Tick | one g: Graph | g = t.curr
     --valid graphs
     graph_wellformed
     -- no two Ticks share the same graph
     tick_curr_unique
-    -- every Tick (moment) will have one graph
-    all t: Tick | one g: Graph | g = t.curr
-    // -- valid transitions
-    all disj t1, t2: Tick | t1.next = t2 => valid_next_tick[t1, t2]
-
+    -- valid transitions beteween Ticks
+    valid_next_tick
 }
 
-
-
+-- see some wellformed sequence of Ticks
 // run {graph_wellformed tick_wellformed} for  exactly 3 Tick, exactly 3 Graph, exactly 3 Node for {next is linear}

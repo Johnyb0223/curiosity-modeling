@@ -32,8 +32,8 @@ Here we have modeled an undirected graph and the idea of wellformed sequential g
 **Definition `valid_next_tick[t1: Tick,t2: Tick]`**
 
 - A `valid_next_tick` is a valid transition from one tick to the next tick
-- a valid transition is a transition where sizeof(t1.curr) = sizeof(t2.curr)
-- a valid transition is a transition where every node in t1.curr has the same number of neighbors in t2.curr
+- a valid transition is a transition where sizeof(t1.curr.nodes) = sizeof(t2.curr.nodes)
+- a valid transition is a transition where for every node in t1.curr.nodes there is some node in t2.curr.nodes such that sizeof(node1.neighbors) = sizeof(node2.neighbors)
 
 **Definition `Sequential Graph States`**
 
