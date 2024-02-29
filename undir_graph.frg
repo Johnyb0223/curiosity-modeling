@@ -45,7 +45,7 @@ pred symmetrical_graph{
         n1 in n2.neighbors implies n2 in n1.neighbors
 }
 
--- all nodes must have at least one neighbor
+-- more then one node in tgraph implies that all nodes have at least one neighbor
 pred all_nodes_have_neighbors{
     all n: Node | #n > 1 implies n.neighbors != none
 }
@@ -60,9 +60,9 @@ pred graph_connected{
 }
 
 -- nodes in different graphs cannot be neighbors
+-- any two graphs are unique
 pred no_cross_graph_neighbors{
     all disj g1,g2: Graph |{
-        
         g1.nodes.^neighbors & g2.nodes.^neighbors = none
     }
 }
@@ -84,7 +84,7 @@ pred graph_wellformed{
 }
 
 -- see some wellformed graph examples
-run {graph_wellformed} for exactly 3 Graph, 9 Node
+// run {graph_wellformed} for exactly 3 Graph, exactly 9 Node
 
 -- we want to bring the idea of steps into the model
 -- a graph at a given time
@@ -112,21 +112,21 @@ pred valid_next_tick[t1, t2 :Tick]{
 }
 
 -- valid transitions beteween Ticks
-pred valid_next_tick{
+pred wellformed_tick_sequence{
     all disj t1,t2: Tick | t1.next = t2 => valid_next_tick[t1, t2]
 }
 
 -- every Tick (moment) will have one graph and no two Ticks share the same graph
 pred tick_wellformed{
-    -- every Tick (moment) will have one graph
+    -- every Tick will have one graph
     all t: Tick | one g: Graph | g = t.curr
     --valid graphs
     graph_wellformed
     -- no two Ticks share the same graph
     tick_curr_unique
     -- valid transitions beteween Ticks
-    valid_next_tick
+    wellformed_tick_sequence
 }
 
 -- see some wellformed sequence of Ticks
-// run {graph_wellformed tick_wellformed} for  exactly 3 Tick, exactly 3 Graph, exactly 3 Node for {next is linear}
+run {graph_wellformed tick_wellformed} for  exactly 3 Tick, exactly 3 Graph, exactly 3 Node for {next is linear}

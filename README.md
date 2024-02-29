@@ -41,11 +41,25 @@ Here we have modeled an undirected graph and the idea of wellformed sequential g
 
 # Testing:
 
-#### TODO
+We tested the following properties of our model:
 
-What tests did you write to test your model itself? What tests did you write to verify properties about your domain area?
-Feel free to give a high-level overview of this.
+- Property: for any two distinct nodes n1, n2. you can reach n2 from n1 and n1 from n2
+- Property: for any two distinct nodes n1, n2. n1 is a neighbor of n2 if and only if n2 is a neighbor of n1
+- Property: there is no graph that has more then one node and some node has no neighbors
+- Property: wellformed_graphs is sufficient for sequential_graph_states
 
 # Interesting Observations:
 
 - A wellformed sequence of ticks in our model maintains the structure of the graph. What is interesting is that this property was enforced solely by constraining two properties of the graph. The number of nodes in the graph and the number of neighbors that each node has.
+
+# Example:
+
+`wellformed_graph`:
+
+![wellformed graphs](<Screenshot 2024-02-29 at 2.04.21 PM.png>)
+
+`sequential_graph_state`:
+
+![alt text](<Screenshot 2024-02-29 at 2.08.22 PM.png>)
+
+![wellformed seqeunces of graphs](<Screenshot 2024-02-29 at 2.06.30 PM.png>)
