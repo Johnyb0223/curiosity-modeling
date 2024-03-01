@@ -47,6 +47,7 @@ We tested the following properties of our model:
 - Property: for any two distinct nodes n1, n2. n1 is a neighbor of n2 if and only if n2 is a neighbor of n1
 - Property: there is no graph that has more then one node and some node has no neighbors
 - Property: wellformed_graphs is sufficient for sequential_graph_states
+- We also test predicates both in respect to our definition of a graph and how predicates should hold on their how predicates work together to model what we want.
 
 # Interesting Observations:
 
